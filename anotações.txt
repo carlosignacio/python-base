@@ -10,3 +10,16 @@ whoami
 
 # permissão de execução
 chmod +x hello.py
+
+# guia de estilo do python
+pep8.org
+
+# Boa prática até 80 colunas e o recomendado é chegar na 79 e quebrar para a linha seguinte
+
+# Dunder é o mesmo que __ (2 underlines) (Double underlines)
+
+# snake case = Ocorre quando as palavras são todas em minúsculo e separadas por underline
+current_language
+
+$ Pascal Case = Ocorre quando as palavras são Juntas e cada uma inicia com Maiúsculo
+CurrentLanguage
