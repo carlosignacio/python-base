@@ -21,5 +21,18 @@ pep8.org
 # snake case = Ocorre quando as palavras são todas em minúsculo e separadas por underline
 current_language
 
-$ Pascal Case = Ocorre quando as palavras são Juntas e cada uma inicia com Maiúsculo
+# Pascal Case = Ocorre quando as palavras são Juntas e cada uma inicia com Maiúsculo
 CurrentLanguage
+
+# módulo "site" mostra qual é o ambiente do python.
+# mostra onde está localizado os arquivos, os pacotes e o interpretador python
+python3 -m site
+
+# mostra onde está instalado seu python
+which python
+
+# Cria o ambiente virtual python com o nome ".venv"
+python3 -m venv .venv
+
+# ativando o ambiente virtual do python (Comando linux)
+source .venv/bin/activate
