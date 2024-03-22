@@ -36,3 +36,9 @@ python3 -m venv .venv
 
 # ativando o ambiente virtual do python (Comando linux)
 source .venv/bin/activate
+
+# Utilizando pip "https://pypi.org" para instalar o ipython (mesmo que o Jupyter online)
+python3 -m pip install ipython
+
+# Upgrade pip
+python3 -m pip install --upgrade pip
