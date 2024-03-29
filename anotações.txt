@@ -42,3 +42,20 @@ python3 -m pip install ipython
 
 # Upgrade pip
 python3 -m pip install --upgrade pip
+
+
+# concatenação (usado em logging)
+%s
+
+# str.format (Usado em mensagens longas, e-mail)
+{}
+
+# f-strings (restante, msg, print, error)
+f"olá, {nome}"
+
+# Elipses
+... > Elipses (reticencias)
+Significa que a lista continua
+
+# placeholder
+{}
