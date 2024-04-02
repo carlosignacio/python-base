@@ -1,64 +1,88 @@
-# shebang - define o interpretador do código
+twitter.com/rochacbruno
+rochacbruno@gmail.com
+
+
+## shebang - define o interpretador do código
 #!/usr/bin/python3
 #!/usr/bin/env python3
 
-# Retorna o carminho do Python na máquina
+## Retorna o carminho do Python na máquina
 which pyton3
 
-# ver usuário
+## ver usuário
 whoami
 
-# permissão de execução
+## permissão de execução
 chmod +x hello.py
 
-# guia de estilo do python
+## guia de estilo do python
 pep8.org
 
-# Boa prática até 80 colunas e o recomendado é chegar na 79 e quebrar para a linha seguinte
+## Boa prática até 80 colunas e o recomendado é chegar na 79 e quebrar para a linha seguinte
 
-# Dunder é o mesmo que __ (2 underlines) (Double underlines)
+## Dunder é o mesmo que __ (2 underlines) (Double underlines)
 
-# snake case = Ocorre quando as palavras são todas em minúsculo e separadas por underline
+## snake case = Ocorre quando as palavras são todas em minúsculo e separadas por underline
 current_language
 
-# Pascal Case = Ocorre quando as palavras são Juntas e cada uma inicia com Maiúsculo
+## Pascal Case = Ocorre quando as palavras são Juntas e cada uma inicia com Maiúsculo
 CurrentLanguage
 
-# módulo "site" mostra qual é o ambiente do python.
-# mostra onde está localizado os arquivos, os pacotes e o interpretador python
+## módulo "site" mostra qual é o ambiente do python.
+## mostra onde está localizado os arquivos, os pacotes e o interpretador python
 python3 -m site
 
-# mostra onde está instalado seu python
+## mostra onde está instalado seu python
 which python
 
-# Cria o ambiente virtual python com o nome ".venv"
+## Cria o ambiente virtual python com o nome ".venv"
 python3 -m venv .venv
 
-# ativando o ambiente virtual do python (Comando linux)
+## ativando o ambiente virtual do python (Comando linux)
 source .venv/bin/activate
 
-# Utilizando pip "https://pypi.org" para instalar o ipython (mesmo que o Jupyter online)
+## Utilizando pip "https://pypi.org" para instalar o ipython (mesmo que o Jupyter online)
 python3 -m pip install ipython
 
-# Upgrade pip
+## Upgrade pip
 python3 -m pip install --upgrade pip
 
 
-# concatenação (usado em logging)
+## concatenação (usado em logging)
 %s
 
-# str.format (Usado em mensagens longas, e-mail)
+## str.format (Usado em mensagens longas, e-mail)
 {}
 
-# f-strings (restante, msg, print, error)
+## f-strings (restante, msg, print, error)
 f"olá, {nome}"
 
-# Elipses
+## Elipses
 ... > Elipses (reticencias)
 Significa que a lista continua
 
-# placeholder
+## placeholder
 {}
 
-
 https://replit.com/@rochacbruno/LTBASEESCOLACLEAN#main.py
+
+## Type set
+Coleção desordenada (sem garantia) porém única. Normalmente alfa-númérica
+Objetos de 
+Utiliza Hash Table
+
+set = conjuntos 
+{} ou set()
+
+União =                 |   ou    .union
+Interseção =            &   ou    .insersection
+Diferença =             -   ou    .difference
+Diferença simétrica =   ^   ou    .symemtric_difference
+
+
+# Dicionário
+key - > value
+{key:value}
+{"nome": "Bruno", "cod": 123}
+    [0],             [1]
+ {key:value, key:value}
