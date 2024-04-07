@@ -347,3 +347,161 @@ else:
     sys.exit(1)
 
 ```
+
+## EAFP - Easy for ASK Forgiveness than permission
+### (É mais fácil pedir perdão do que permissão)
+
+Exemplo 1:
+
+```python
+#!/usr/bin/env python3
+
+import os
+import sys
+
+# EAFP - Easy for ASK Forgiveness than permission
+# (É mais fácil pedir perdão do que permissão)
+
+try:
+    names = open("names.txt").readlines()
+except:
+    print("[Error] File names.txt not found.")
+    sys.exit(1)
+
+try:
+    print(names[1])
+except: 
+    print("[Error]: Missing name in the list")
+    sys.exit(1)
+
+```
+
+#### Bare except
+
+Exemplo 2:
+
+```python
+#!/usr/bin/env python3
+
+import os
+import sys
+
+# EAFP - Easy for ASK Forgiveness than permission
+# (É mais fácil pedir perdão do que permissão)
+
+try:
+    names = open("names.txt").readlines()
+except: # Bare except
+    print("[Error] File names.txt not found.")
+    sys.exit(1)
+
+try:
+    print(names[1])
+except: 
+    print("[Error]: Missing name in the list")
+    sys.exit(1)
+
+```
+
+Exemplo 3:
+
+```python
+#!/usr/bin/env python3
+
+import os
+import sys
+
+# EAFP - Easy for ASK Forgiveness than permission
+# (É mais fácil pedir perdão do que permissão)
+
+try:
+    names = open("names.txt").readlines() # FileNotFoundError
+    #1 / 0 # ZeroDivisionError
+    1 / 1 
+    #print(names.banana) # AttributeError
+    print(names.append)
+except FileNotFoundError:
+    print("[Error] File names.txt not found.")
+    sys.exit(1)
+except ZeroDivisionError:
+    print("[Error] You can't divide by zero")
+    sys.exit(1)
+except AttributeError:
+    print("[Error] List doesn`t have banana")    
+    sys.exit(1)
+try:
+    print(names[1])
+except: 
+    print("[Error]: Missing name in the list")
+    sys.exit(1)
+
+```
+
+Exemplo 4:
+
+```python
+#!/usr/bin/env python3
+
+import os
+import sys
+
+# EAFP - Easy for ASK Forgiveness than permission
+# (É mais fácil pedir perdão do que permissão)
+
+try:
+    names = open("names.txt").readlines() 
+    # FileNotFoundError
+    print(names.append)
+except FileNotFoundError as e:
+    print(f"{str(e)}.")
+    sys.exit(1)
+    # TODO: Usar retry
+else:
+    print("Sucesso!!!")
+finally:
+    print("Execute isso sempre")
+
+try:
+    print(names[1])
+except: 
+    print("[Error]: Missing name in the list")
+    sys.exit(1)
+
+```
+
+Exemplo 5
+
+```python
+#!/usr/bin/env python3
+
+import os
+import sys
+
+# EAFP - Easy for ASK Forgiveness than permission
+# (É mais fácil pedir perdão do que permissão)
+
+try:
+    raise RuntimeError("Ocorreu um erro")
+except Exception as e:
+    print(str(e))
+
+try:
+    names = open("names.txt").readlines() 
+    # FileNotFoundError
+    print(names.append)
+except FileNotFoundError as e:
+    print(f"{str(e)}.")
+    sys.exit(1)
+    # TODO: Usar retry
+else:
+    print("Sucesso!!!")
+finally:
+    print("Execute isso sempre")
+
+try:
+    print(names[1])
+except: 
+    print("[Error]: Missing name in the list")
+    sys.exit(1)
+
+```
