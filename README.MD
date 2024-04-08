@@ -2,6 +2,24 @@ twitter.com/rochacbruno
 
 rochacbruno@gmail.com
 
+## Testes arquivo hello.py
+
+```sh
+python3 hello.py --lang=pt_BR
+```
+
+## Testes arquivo prefixcalc.py
+
+```sh
+python3 prefixcalc.py sum 9 1
+```
+
+## Pesquisar palavras no codigo fonte do git
+
+```sh
+git grep "TODO:"
+```
+
 
 ## Shebang - define o interpretador do código
 ```python
@@ -504,4 +522,52 @@ except:
     print("[Error]: Missing name in the list")
     sys.exit(1)
 
+```
+
+## Logs de Erro de Execução utlizando LOGGING
+
+Apresenta o erro no momento que ele acontece
+
+<https://docs.python.org/3/library/logging.html=logging-levels>
+
+Exemplo 1:
+
+```python
+#!/usr/bin/env python3
+"""
+"""
+import os
+import logging
+
+# BOILERPLATE
+# TODO: usar função
+# TODO: usar lib (loguru)
+log_level = os.getenv("LOG_LEVEL", "WARNING").upper()
+# nossa instancia
+log = logging.Logger("logs.py", log_level)
+# level
+ch = logging.StreamHandler() # Console/terminal/stderr
+ch.setLevel(logging.DEBUG)
+# formatacao
+fmt = logging.Formatter(
+    '%(asctime)s %(name)s %(levelname)s l:%(lineno)d f:%(filename)s %(message)s'
+)
+ch.setFormatter(fmt)
+# destino
+log.addHandler(ch)
+
+log.critical("Erro geral ex: banco de dados sumiu")
+log.debug("Mensagem pro dev, qa, sysadmin")
+log.warning("Aviso que não causa erro")
+log.error("Erro que afeta uma unica execucao")
+log.info("Mensagem geral para usuarios")
+
+print("---")
+
+try:
+    1 / 0
+except ZeroDivisionError as e:
+    logging.error("Deu erro %s", str(e))
+    # stdout
+    # sterr
 ```
