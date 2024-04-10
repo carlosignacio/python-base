@@ -2,6 +2,22 @@ twitter.com/rochacbruno
 
 rochacbruno@gmail.com
 
+## Python Tutor (Por ser utilizado para debbug simples)
+Exercicio da tabuada por ser utilizado no teste dessa ferramenta
+
+https://pythontutor.com/
+
+>Start coding online now in **Python**
+
+# Lista 
+* [ ]
+
+# Tupla
+* ( )
+
+# Dicionário
+* { }
+
 ## Statement
 
 >**_"Statement"_** são as palavras de ordem do Python, que checam alguma coisa, não retornam valor, mas verificam algo.
@@ -126,6 +142,11 @@ source .venv/bin/activate
 ```sh
 python3 -m pip install ipython
 ```
+
+#### help no ipython
+
+>help("synbols")
+>help("**")
 
 ## Upgrade pip
 
@@ -604,4 +625,32 @@ except ZeroDivisionError as e:
     logging.error("Deu erro %s", str(e))
     # stdout
     # sterr
+```
+
+## Condição Ternária (If ternário ou if inline)
+
+Ao utilizar o Ternário, é obrigatório utilizar o "else", para definir o valor default, caso a condição não seja "True"
+
+```python
+n1 = 1
+n2 = 9
+nome = "Carlos"
+
+
+# Esse fornato TRADICIONAL
+if n2 > n1:
+    valor = "ok"
+
+# Pode ser feito na forma TERNÁRIA - Exemplo 1
+valor = "ok" if n2 > n1 else "nok"
+
+# Pode ser feito na forma TERNÁRIA - Exemplo 2
+print("ok" if n2 < n1 else "nok")
+
+# Esse fornato TRADICIONAL
+if nome != "":
+    nome = "pessoa"
+
+# Pode ser feito na forma TERNÁRIA - Exemplo 3
+print(f"Ola {nome or 'pessoa'}, boas vindas.")
 ```
