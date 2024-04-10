@@ -2,6 +2,40 @@ twitter.com/rochacbruno
 
 rochacbruno@gmail.com
 
+## Statement
+
+>**_"Statement"_** são as palavras de ordem do Python, que checam alguma coisa, não retornam valor, mas verificam algo.
+
+* Se        -> if
+* Senão, se -> elif
+* Senão,    -> else
+* E         -> and
+* OU        -> or
+* Não       -> not
+
+## Assignment
+
+* Perguntas..
+
+Exemplo:
+
+A padaria está aberta?
+
+## Expressões
+
+>**_"Expressão"_** é a junção entre as conexões lógicas e condições que avaliam para booleano. Toda vez que eu esperar uma resposta, consideramos uma expressão.
+
+Exemplo:
+
+É feriado? (True or False)
+
+## Actions
+
+* Função
+* Método
+* Instrução
+
+
 ## Testes arquivo hello.py
 
 ```sh
