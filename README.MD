@@ -64,6 +64,12 @@ python3 hello.py --lang=pt_BR
 python3 prefixcalc.py sum 9 1
 ```
 
+## Testes arquivo notes.py
+
+```sh
+python3 notes.py new "Minha terceira Nota"
+```
+
 ## Pesquisar palavras no codigo fonte do git
 
 ```sh
@@ -653,4 +659,475 @@ if nome != "":
 
 # Pode ser feito na forma TERNÁRIA - Exemplo 3
 print(f"Ola {nome or 'pessoa'}, boas vindas.")
+```
+
+## Iteração com FOR
+
+Exemplo 1 - "Range"
+
+```python
+#!/usr/bin/env python3
+
+#### Gera uma lista de número do 1 até o 699, pulando de 2 em 2
+numbers = range(1, 700, 2) # start, next, stop, step
+
+# Iterable
+for number in numbers:
+    print(number)
+```
+
+Exemplo 2 - "Continue"
+
+```python
+#!/usr/bin/env python3
+"""
+"""
+#numbers = [1, 2, 3, 4, 5, 6]
+numbers = range(1,11)
+
+#### Imprime apenas número pares
+# Iterable
+for number in numbers:
+    par = number % 2 == 0
+    if par:
+        print(number)
+    else:
+        continue # Reinicia o processo para o for, até o final dos números
+    
+    print(f"mais codigo com {number}")
+```
+
+Exemplo 3 - "Break"
+
+```python
+#!/usr/bin/env python3
+"""
+"""
+#numbers = [1, 2, 3, 4, 5, 6]
+numbers = range(1,11)
+
+#### Imprime apenas número pares
+# Iterable
+for number in numbers:
+    par = number % 2 == 0
+    if par:
+        print(number)
+    else:
+        break # Interrompe o processo mesmo que tenham ações a fazer
+    
+    print(f"mais codigo com {number}")
+```
+
+Exemplo 4 - "Ler conteúdo de um Arquivo de texto e imprimir as linhas do arquivo"
+
+- Criar arquivo "post.txt"
+```
+title: Meu post
+tags:tech,geral
+date:2022-02-10
+published:1
+---
+Este é o meu post
+Aqui tem texto e conteudo
+etc. etc. etc.
+```
+
+```python
+#!/usr/bin/env python3
+
+# Abre o arquivo e imprime as linhas
+for line in open("post.txt"):
+    print(line)
+```
+
+Exemplo 5 - "Ler conteúdo de um Arquivo de texto e imprimir as linhas do arquivo até encontrar a linha com '---\n' sendo o \n uma quebra de linha"
+
+- Criar arquivo "post.txt"
+```
+title: Meu post
+tags:tech,geral
+date:2022-02-10
+published:1
+---
+Este é o meu post
+Aqui tem texto e conteudo
+etc. etc. etc.
+```
+
+```python
+#!/usr/bin/env python3
+
+# Abre o arquivo e imprime as linhas até encontrar o "---\n"
+for line in open("post.txt"):
+    if line == "---\n":
+        break
+    print(line)
+```
+
+Exemplo 6 - "Ler conteúdo de um Arquivo de texto e imprimir as linhas do arquivo até encontrar a linha com '---\n' sendo o \n uma quebra de linha e criar um dicionário com o conteúdo"
+
+- Criar arquivo "post.txt"
+```
+title: Meu post
+tags:tech,geral
+date:2022-02-10
+published:1
+---
+Este é o meu post
+Aqui tem texto e conteudo
+etc. etc. etc.
+```
+
+```python
+#!/usr/bin/env python3
+
+dados = {}
+for line in open("post.txt"):
+    if line == "---\n":
+        break
+    key, valor = line.split(":")
+    dados[key] = valor.strip() # strip remove caracteres especiais, nesse caso removeu o \n
+    
+print(dados)
+```
+
+Exemplo 7 -  For loops / Laço for
+
+- Criando uma nova Lista
+
+```python
+#!/usr/bin/env python3
+
+original = [1, 2, 3]
+dobrada = []
+for n in original:
+    dobrada.append(n * 2)
+
+print(dobrada)
+```
+
+Exemplo 8 -  List Comprehension (Funcional)
+
+- Criando uma nova Lista
+
+```python
+#!/usr/bin/env python3
+
+# For loops / Laço for
+original = [1, 2, 3]
+dobrada = []
+for n in original:
+    dobrada.append(n * 2)
+
+print(dobrada)
+
+# Funcional
+# List Comprehension
+dobrada = [n * 2 for n in original]
+print(dobrada)
+```
+
+Exemplo 9 -  Dict Comprehension
+
+- Criando uma nova Lista
+
+```python
+#!/usr/bin/env python3
+
+# Abre o arquivo e imprime as linhas
+for line in open("post.txt"):
+    print(line)
+
+# Abre o arquivo e imprime as linhas em um dicionário
+dados = {}
+for line in open("post.txt"):
+    if ':' in line:
+        key, valor = line.split(":")
+        dados[key] = valor.strip()
+print(dados)
+
+# Dict comprehension
+dados = {line for line in open("post.txt") if ":" in line}
+print(dados)
+
+# Dict comprehension utilizando "Dicionario direto"
+dados = {
+    line.split(":")[0]: line.split(":")[1].strip()
+    for line in open("post.txt") 
+    if ":" in line
+}
+print(dados)
+```
+
+## While - Enquanto
+
+Repetir algo até que a condição seja verdadeira (True).
+
+Exemplo 1 - "Loop infinit, main loop"
+
+```python
+#!/usr/bin/env python3
+
+n = 0
+while True: # loop infinito, main loop
+    print(n)
+    n += 1
+```
+
+Exemplo 2 - Condição de parada
+
+- "Imprimir até o 100"
+
+```python
+#!/usr/bin/env python3
+
+n = 0
+while n < 101:
+    print(n)
+    n += 1
+```
+
+Exemplo 3 - Condição de parada (Break)
+
+- "Imprimir até o 39"
+
+```python
+#!/usr/bin/env python3
+
+n = 0
+while n < 101:
+    if n == 40:
+        break
+    print(n)
+    n += 1
+```
+
+Exemplo 4 - Condição de continue 
+
+- "Imprimir pulando o 40"
+
+```python
+#!/usr/bin/env python3
+
+n = 0
+while n < 101:
+    if n == 40:
+        n += 1        
+        continue
+    print(n)
+    n += 1
+```
+
+Exemplo 5 - Condição de continue 
+
+- "Imprimir pulando do 40 ao 60"
+
+```python
+#!/usr/bin/env python3
+
+n = 0
+while n < 101:
+    if n >= 40 and  n<= 60:
+        n += 1        
+        continue
+    print(n)
+    n += 1
+```
+
+Exemplo 5 - Condição de continue 
+
+- "Imprimir apenas números pares"
+
+```python
+#!/usr/bin/env python3
+
+n = 0
+while n < 101:
+    if n % 2 != 0:
+        n += 1        
+        continue
+    print(n)
+    n += 1
+```
+
+Exemplo 6 
+- "Refatorando notes.py"
+
+```python
+#!/usr/bin/env python3
+"""Bloco de notas
+
+$ notes.py new "Minha Nota"
+tag: tech
+text: 
+Anotação geral sobre carreira de tecnologia
+
+$ notes.py read --tag=tech
+...
+...
+"""
+__version__ = "0.1.0"
+
+import os
+import sys
+
+cmds = ("read", "new")
+path =  os.curdir
+filepath = os.path.join(path, "notes.txt")
+
+arguments = sys.argv[1:]
+if not arguments:
+    print("Invalid usage")
+    print(f"you must specify subcommand {cmds}")
+    sys.exit(1)
+
+if arguments[0] not in cmds:
+    print(f"Invalid command {arguments[0]}")
+
+while True:
+
+    if arguments[0] == "read":
+        try:
+            arg_tag = arguments[1].lower()
+        except IndexError:
+            arg_tag = input("Qual a tag?").strip().lower()
+
+        # leitura das notas
+        for line in open(filepath):
+            title, tag, text = line.split("\t")
+            if tag.lower() == arg_tag:
+                print(f"title: {title}")
+                print(f"text: {text}")
+                print("-" * 30)
+                print()
+
+    if arguments[0] == "new":
+        try:
+            title = arguments[1]
+        except IndexError:
+            title = input("Qual é o título:").strip().title()
+
+        text = [
+            f"{title}",
+            input("tag:").strip(),
+            input("text:\n").strip(),
+        ]
+        # \t - tsv
+        with open(filepath, "a") as file_:
+            file_.write("\t".join(text) + "\n")
+
+    cont = input(f"Quer continuar {arguments[0]} notas? [N/y]").strip().lower()
+    if cont != "y":
+        break
+```
+
+Exemplo 7 
+- "Refatorando prefixcalc.py"
+
+```python
+#!/usr/bin/env python3
+"""Calculadora prefix.
+
+Funcionamento:
+
+[operacao] [n1] [n2]
+
+Operações:
+sum -> +
+sub -> -
+mul -> *
+div -> /
+
+Uso:
+$ prefixcalc.py sum 5 2
+7
+
+$ prefixcalc.py mul 10 5
+50
+
+$ prefixcalc.py
+operacao: sum
+n1: 5
+n2: 4
+9
+
+Os Resultados serão salvos em `prefixcalc.log`
+"""
+__version__ = "0.1.0"
+
+import os
+import sys
+
+from datetime import datetime
+
+
+
+while True:
+
+    arguments = sys.argv[1:]
+    
+    # Validação
+    if not arguments:
+        operation = input("Operação:")
+        n1 = input("n1:")
+        n2 = input("n2:")
+        arguments = [operation, n1, n2]
+    elif len(arguments) != 3:
+        print("Número de argumentos inválidos")
+        print("Ex: `sum 5 5`")
+        sys.exit(1)
+
+    operation, *nums = arguments
+
+    valid_operations = ("sum", "sub", "mul", "div")
+    if operation  not in valid_operations:
+        print("Operação inválida")
+        print(valid_operations)
+        sys.exit(1)
+
+    validated_nums = []
+    for num in nums:
+        # TODO: Repetição com while + exceptions
+        if not num.replace(".", "").isdigit():
+            print(f"Número inválido {num}")
+            sys.exit(1)
+        if "." in num:
+            num = float(num)
+        else:
+            num = int(num)
+        validated_nums.append(num)
+
+    try:
+        n1, n2 = validated_nums
+    except ValueError as e:
+        print(str(e))
+        sys.exit(1)
+
+    # TODO: Usar dict de funcoes
+    if operation == "sum":
+        result = n1 + n2
+    elif operation == "sub":
+        result = n1 - n2
+    elif operation == "mul":
+        result = n1 * n2       
+    elif operation == "div":
+        result = n1 / n2
+
+    print(f"O resultado é {result}")
+
+    path = os.curdir
+    filepath = os.path.join(path, "prefixcalc.log")
+    timestamp = datetime.now().isoformat()
+    user = os.getenv('USER', 'anonymous')
+
+    try:
+        with open(filepath, "a") as file_:
+            file_.write(f"{timestamp} - {user} - {operation},{n1},{n2} = {result}\n")
+    except PermissionError as e:
+        # TODO: logging
+        print(str(e))
+        sys.exit(1)
+
+    if input("Pressione enter para continuar ou qualquer tecla para sair"):
+        break
 ```
