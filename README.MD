@@ -85,7 +85,7 @@ git grep "TODO:"
 
 ## Retorna o carminho do Python na máquina
 ```sh
-which pyton3
+which python3
 ```
 
 ## Ver usuário
@@ -125,7 +125,7 @@ CurrentLanguage
 python3 -m site
 ```
 
-## mostra onde está instalado seu python
+## Mostra onde está instalado seu python
 
 ```sh
 which python
@@ -175,6 +175,15 @@ python3 -m pip install --upgrade pip
 
 ```python
 f"olá, {nome}"
+```
+
+## Imprimir itens de uma lista em uma nova linha e de forma limpa utilizando DESEMPACOTAMENTO (*)
+```python
+
+nomes = ["Carlos", "Miria", "Eduardo"]
+
+# Desempacotamento (*) com separador com quebra de linha
+print(*nomes, sep="\n")
 ```
 
 ## Elipses

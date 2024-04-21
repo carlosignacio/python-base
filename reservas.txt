@@ -1,0 +1,4 @@
+Carlos,2,3
+Dado,1,2
+Bingo,3,3
+Malu,4,4
