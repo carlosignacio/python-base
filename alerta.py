@@ -13,29 +13,42 @@ temp entre 0 er 10: Frio
 temp <0: Frio extremo
 ...
 """
-import sys
+#import sys
 import logging
+
 log = logging.Logger("alerta")
 
-info = {
-    "temperatura": None,
-    "umidade": None
-}
-keys = info.keys()
+info = {"temperatura": None, "umidade": None}
 
-for key in keys:
-    try:
-        info[key] = float(input(f"Qual a {key}? ").strip())
-    except ValueError:
-        log.error(f"{key.capitalize()} inválida!")
-        sys.exit(1)
+while True:
+    info_size = len(info.values())
+    filled_size = len([value for value in info.values() if value is not None])
 
-temp = info["temperatura"]
-umidade = info["umidade"]
+    if info_size == filled_size:
+        break
+
+    if all(info.values()):
+        break
+
+    for key in info.keys():
+        if info[key] is not None:
+            continue
+        try:
+            info[key] = int(input(f"Qual a {key}? ").strip())
+        except ValueError:
+            log.error("%s inválida! Digite números", key)
+            #log.error(f"{key.capitalize()} inválida!")
+            break
+            #sys.exit(1)
+
+temp, umidade = info.values()
+
+#temp = info["temperatura"]
+#umidade = info["umidade"]
 
 if temp > 45:
     print(("🥵 ALERTA!!! Perigo calor extremo"))
-elif (temp * 3) >= umidade:
+elif (temp * 3) > umidade:
     print("🥵 💦 ALERTA!!! Perigo de calor úmido")
 elif temp >= 10 and temp <= 30:
     print("😃 Temperatura Normal")
