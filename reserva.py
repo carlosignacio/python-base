@@ -24,80 +24,87 @@ Se o outro usuário tentar reservar o mesmo quarto o programa deve exibir uma me
 import sys
 import logging
 
-ocupados = {}
+RESERVAS_FILE = "reservas.txt"
+QUARTOS_FILE = "quartos.txt"
+
+# Acesso ao banco de dados
+ocupados = {} # acumulador
 try:
-    for line in open("reservas.txt"):
+    for line in open(RESERVAS_FILE):
         nome, num_quarto, dias = line.strip().split(",")
         ocupados[int(num_quarto)] = {
             "nome": nome,
-            "dias": dias
+            "dias": int(dias)
         }
 except FileNotFoundError:
-    logging.error("Arquivo reservas.txt não existe")
+    logging.error("Arquivo %S não existe", RESERVAS_FILE)
     sys.exit(1)
 
+# TODO: Usar função para ler os arquivos
 
-quartos = {}
+quartos = {} # acumulador
 try:
-    for line in open("quartos.txt"):
-        codigo, nome, preco = line.strip().split(",")
-        quartos[int(codigo)] = {
-            "nome": nome,
+    for line in open(QUARTOS_FILE):
+        num_quarto, nome_quarto, preco = line.strip().split(",")
+        quartos[int(num_quarto)] = {
+            "nome_quarto": nome_quarto,
             "preco": float(preco), # TODO: Decimal
-            "disponivel": False if int(codigo) in ocupados else True
+            "disponivel": False if int(num_quarto) in ocupados else True
         }
 except FileNotFoundError:
-    logging.error("Arquivo quartos.txt não existe")
+    logging.error("Arquivo %s não existe", QUARTOS_FILE)
     sys.exit(1)
 
-
-
-
-print("Reserva Hotel Pythonico")
-print("-" * 40)
+# Programa Principal
+print("Reservas no Hotel Pythonico da Linux Tips")
+print("-" * 52)
 if len(ocupados) == len(quartos):
-    print("Hotel lotado")
-    sys.exit(1)
+    print("Hotel está lotado, volte depois.")
+    sys.exit(0)
 
-nome = input("Nome do cliente:").strip()
-
+nome = input("Qual é o seu nome:").strip()
+print()
 print("Lista de quartos:")
-for codigo, dados in quartos.items():
-    nome_quarto = dados["nome"]
-    preco = dados["preco"]
-    disponivel = "❌" if not dados['disponivel']  else "✅"
+print()
+head = ["Número", "Nome do Quarto", "Preço", "Disponível"]
+print(f"{head[0]:<6} - {head[1]:<14} - R$ {head[2]:<9} - {head[3]:<10}")
+for num_quarto, dados_quarto in quartos.items():
+    nome_quarto = dados_quarto["nome_quarto"]
+    preco = dados_quarto["preco"]
+    disponivel = "❌" if not dados_quarto['disponivel']  else "✅"
     #disponivel = dados['disponivel'] and "✅" or "❌"
     # TODO: Substituir casa decimal por vírgula
-    print(f"{codigo} - {nome_quarto} - R$ {preco:.2f} - {disponivel}")
+    print(f"{num_quarto:<6} - {nome_quarto:<14} - R$ {preco:<9.2f} - {disponivel:<10}")
 
 
-print("-" * 40)
+print("-" * 52)
+# reserva
 try:
-    num_quarto = int(input("Número do quarto:").strip())
+    num_quarto = int(input("Qual o quarto desejado:").strip())
     if not quartos[num_quarto]["disponivel"]:
-        print(f"O quarto {num_quarto} está ocupado.")
-        sys.exit(1)
+        print(f"O quarto {num_quarto} está ocupado, escolha outro.")
+        sys.exit(0)
 except ValueError:
     logging.error("Número inválido, digite apenas dígitos.")
-    sys.exit(1)
+    sys.exit(0)
 except KeyError:
     print(f"O quarto {num_quarto} não existe.")
-    sys.exit(1)
+    sys.exit(0)
 try:
     dias = int(input("Quantos dias?:").strip())
 except ValueError:
     logging.error("Número inválido, digite apenas dígitos.")
-    sys.exit(1)
+    sys.exit(0)
 
-nome_quarto = quartos[num_quarto]["nome"]
-preco_quarto = quartos[num_quarto]["preco"]
-disponivel = quartos[num_quarto]["disponivel"]
-total = preco_quarto * dias
+nome_quarto = quartos[num_quarto]["nome_quarto"]
+preco_diaria = quartos[num_quarto]["preco"]
+#disponivel = quartos[num_quarto]["disponivel"]
+total = preco_diaria * dias
 
 # print(",").join([nome, str(num_quarto), str(dias)])
 
-with open("reservas.txt", "a") as file_:
-    file_.write(f"{nome},{num_quarto},{dias}\n")
-
 print(f"{nome} você escolheu o quarto {nome_quarto} e vai custar: R${total:.2f}")
 
+if input("Confirma? (digite y) ").strip().lower() in ("y", "yes", "sim", "s"):
+    with open(RESERVAS_FILE, "a") as reserva_file:
+        reserva_file.write(f"{nome},{num_quarto},{dias}\n")
